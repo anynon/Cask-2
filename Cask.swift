@@ -62,6 +62,19 @@ import UIKit
             default:
                 break;
             }
-     return result;
+        return result;
+    }
+
+    @objc func initPrefs() {
+        let path = "/User/Library/Preferences/com.ryannair05.caskprefs.plist"
+        let pathDefault = "/Library/PreferenceBundles/caskprefs.bundle/defaults.plist"
+        let fileManager = FileManager.default
+
+        if !fileManager.fileExists(atPath: path) {
+            do {
+                try fileManager.copyItem(atPath: pathDefault, toPath: path)
+            } catch {
+            }
+        }
     }
 }
